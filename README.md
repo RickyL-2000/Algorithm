@@ -1,2 +1,5 @@
-# Algorithm
-Never Stop!
+# README
+
+这是一个专门用于记录算法学习的仓库。其中basics是一些基本算法和数据结构的笔记，其他的则是各种oj的练习记录。
+
+
