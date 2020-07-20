@@ -36,3 +36,5 @@
   * Dijkstra算法
   * 用make_heap将vector变成priority queue
 * pp17 - 06-图3 六度空间 (30point(s))
+* pp18 - 07-图4 哈利·波特的考试 (25point(s))
+  * 暴力Dijkstra
