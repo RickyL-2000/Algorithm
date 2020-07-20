@@ -51,7 +51,7 @@ int main() {
                 return 0;
             }
             for (int u = 1; u <= n; u++) {
-                if (edges[node->first][u] >= 0 && visited[u] == false) {
+                if (edges[node->first][u] >= 0 && visited[u] == false) {    // FIXME visited貌似没有用过?
                     if (nodes[u]->second > nodes[node->first]->second + edges[node->first][u]) {
                         nodes[u]->second = nodes[node->first]->second + edges[node->first][u];
                         if (!connect) parent[u] = node->first;
