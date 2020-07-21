@@ -42,6 +42,7 @@ int main() {
     scanf("%d %d", &n, &d);
     int x, y;
     Node* root = new Node(0, 0, 0);
+    root->dist = 0;
     root->parent = {root};
     nodes.push_back(root);
     for (int i = 1; i <= n; i++) {
@@ -69,20 +70,32 @@ int main() {
             dsts.push_back(cur);
             continue;
         }
-        for (int v = 1; v <= n; v++) {
-            if (distance(cur, nodes[v]) <= (double) d && visited[v] == false) {
-                if (nodes[v]->dist > cur->dist + 1) {
-                    nodes[v]->dist = cur->dist + 1;
-                    nodes[v]->parent = {cur};
+        if (cur == root) {
+            for (int i = 0, len = pq.size(); i < len; i++) {
+                if (distance(cur, pq[i]) - 7.5 <= (double) d && visited[pq[i]->id] == false) {
+                    if (pq[i]->dist > cur->dist + 1) {
+                        pq[i]->dist = cur->dist + 1;
+                        pq[i]->parent = {cur};
+                    } else if (pq[i]->dist == cur->dist + 1) {
+                        pq[i]->parent.push_back(cur);
+                    }
                 }
-                if (nodes[v]->dist == cur->dist + 1) {
-                    nodes[v]->parent.push_back(cur);
+            }
+        } else {
+            for (int i = 0, len = pq.size(); i < len; i++) {
+                if (distance(cur, pq[i]) <= (double) d && visited[pq[i]->id] == false) {
+                    if (pq[i]->dist > cur->dist + 1) {
+                        pq[i]->dist = cur->dist + 1;
+                        pq[i]->parent = {cur};
+                    } else if (pq[i]->dist == cur->dist + 1) {
+                        pq[i]->parent.push_back(cur);
+                    }
                 }
             }
         }
     }
 
-    if (flag) {
+    if (flag && dsts.empty()) {
         printf("0");
         return 0;
     }
