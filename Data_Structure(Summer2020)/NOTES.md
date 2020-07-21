@@ -1,5 +1,9 @@
 # NOTES
 
+## ToDos
+
+* pp19 - 蛮麻烦的一个最短路径问题，把状态调整好再来重写一遍，一鼓作气
+
 ## Catagory
 
 ### List
@@ -37,4 +41,6 @@
   * 用make_heap将vector变成priority queue
 * pp17 - 06-图3 六度空间 (30point(s))
 * pp18 - 07-图4 哈利·波特的考试 (25point(s))
+  * 暴力Dijkstra
+* pp20 - 07-图6 旅游规划 (25point(s))
   * 暴力Dijkstra
