@@ -30,8 +30,8 @@ int main()
 
 List Merge( List L1, List L2 ) {
     List ptr1 = L1->Next, ptr2 = L2->Next;
-    List L = L1 , ptr = L;
     L1->Next = NULL, L2->Next = NULL;
+    List L = (List) malloc (sizeof(struct Node)) , ptr = L;
     L->Next = NULL;
     while (ptr1 != NULL && ptr2 != NULL) {
         if (ptr1->Data < ptr2->Data) {
