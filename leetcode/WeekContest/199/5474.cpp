@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iostream>
 #include <queue>
+#include <cmath>
 using namespace std;
 
 struct TreeNode {
@@ -16,14 +17,10 @@ struct TreeNode {
 
 class Solution {
 private:
-    int Logn[1100];
+    double log2 = log(2);
     vector<pair<TreeNode*, int>> leaves;
-    void pre() {
-        Logn[1] = 0;
-        Logn[2] = 1;
-        for (int i = 3; i < 1100; i++) {
-            Logn[i] = Logn[i / 2] + 1;
-        }
+    int Log(int x) {
+        return (int) log(x) / log2;
     }
     void bfs(TreeNode* root) {
         int idx = 1, cur_idx;
@@ -45,17 +42,16 @@ private:
         }
     }
     int dist(int idx1, int idx2) {
-        if (Logn[idx1] > Logn[idx2]) {
-            return 1 + dist(idx1 / 2, idx2);
-        } else if (Logn[idx1] < Logn[idx2]) {
-            return 1 + dist(idx1, idx2 / 2);
-        }
         if (idx1 == idx2) return 0;
-        else return 2 + dist(idx1 / 2, idx2 / 2);
+        if (Log(idx1) > Log(idx2)) {
+            return 1 + dist(idx1 / 2, idx2);
+        } else if (Log(idx1) < Log(idx2)) {
+            return 1 + dist(idx1, idx2 / 2);
+        } else return 2 + dist(idx1 / 2, idx2 / 2);
     }
 public:
     int countPairs(TreeNode* root, int distance) {
-        pre();
+        // pre();
         bfs(root);
         int ret = 0, len = leaves.size();
         for (int i = 0; i < len-1; i++) {
